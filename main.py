@@ -12,7 +12,7 @@ def display_board(user_placements):
 
 def user_choice():
     '''
-    validates user choice to remain in range 1 to 9
+    validates user choice are in range 1 to 9
     '''
     valid_positions = list(range(1,10))
     choice = input('enter the position(between 1 and 9): ')
@@ -39,11 +39,15 @@ def game_over(user_placements):
 # check  any possible winning pattern exists and its member are not ' ' ( as we initailsied list with ' ')
         if user_placements[winning_pattern[0]] == user_placements[winning_pattern[1]] and user_placements[winning_pattern[1]] == user_placements[winning_pattern[2]] and user_placements[winning_pattern[0]] != ' ':
             print(f'player {user_placements[winning_pattern[0]]} wins')
-            return True            
+            return True
+# if ' ' is not in placements and all placements are already done. declare it a draw
+    if ' ' not in user_placements:
+        print('draw! well played')
+        return True
     return False
 
 def game(): 
-    user_placements = [' '] * 10
+    user_placements = [' '] * 9
     isPlayer1 = True
     display_board(user_placements)
     while game_over(user_placements) == False:
